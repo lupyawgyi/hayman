@@ -118,8 +118,8 @@
                 {data: 'openingDate', name: 'openingDate'},
                 {data: 'address', name: 'Address'},
                 {data: 'city', name: 'city'},
-                {data: 'phone', name: 'Phone'},
-                {data: 'manager', name: 'Manager'},
+                {data: 'phone', name: 'phone'},
+                {data: 'manager', name: 'manager'},
                 {data: 'action', name: 'action'},
 
 

@@ -1,153 +1,160 @@
-@extends('layout.master')
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('Title')</title>
+    <link rel="icon" href="{!! asset('image/logo.ico') !!}">
+    {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >--}}
+    <link rel="stylesheet" href="{{asset("css/bootstrap.css")}}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="{{asset('css/fontawsome.min.css')}}">
+    <link rel="stylesheet" href="{{asset("/css/bootstrap-theme.min.css")}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-@section('content')
-    <div class="container-fluid mt-3">
-        @if(session('status'))
-            <p class="alert alert-success">{{session('status')}}</p>
-        @endif
-        <div class="mb-3">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/home')}}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/branch/index')}}">Branchs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/user')}}">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/staff/index')}}">Staff</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/phone/index')}}">Phones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{url('/company/index')}}">Company</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
-        </div>
-        {{--<div class="mb-3">--}}
-        {{--<ul class="nav nav-tabs">--}}
-        {{--<li class="nav-item">--}}
-        {{--<a class="nav-link active" href="{{url('/index')}}">Company</a>--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-        {{--</div>--}}
-        <div class="mt-2 mb-4">
-            <h2>Company</h2>
-            <a href="{{url('/company/create')}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Create
-                new Company</a>
+
+</head>
+<body>
+@include('layouts.nav')
+<div class="container-fluid mt-3">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link " href="{{url('backend/users/index')}}">Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="{{url('backend/roles/index')}}">Roles</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="{{url('backend/permissions/index')}}">Permissions</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="{{url('backend/branches/index')}}">Branches</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+    </ul>
+</div>
+<div class="container-fluid">
+    @if(session('status'))
+        @include("helpers.session")
+    @endif
+    <div class="my-2">
+        <div class="card-header">
+            <h3>All Branches</h3>
         </div>
         <div>
-
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <a href="{{url('backend/branches/create')}}" class="btn btn-outline-primary mt-3 text-center"><i
+                    class="fa fa-xbox" aria-hidden="true"></i> &nbsp;Create New Branch</a>
+        </div>
+        <div class="card-body">
+            <table id="mm" class="display" style="width:100%">
                 <thead>
                 <tr>
                     <th>Company Name</th>
-                    <th>Person One Name</th>
-                    <th>Phone Number</th>
-                    <th>Person Two Name</th>
-                    <th>Phone Number</th>
-                    <th>Person Three Name</th>
-                    <th>Phone Number</th>
+                    <th>Contact One</th>
+                    <th>Phone</th>
+                    <th>Contact Two</th>
+                    <th>Phone</th>
                     <th>Website</th>
                     <th>Address</th>
-                    <th class="text-center">View</th>
+                    <th width="60px">Action</th>
+                    {{--                    <th></th>--}}
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($companies as $company)
-                    <tr>
-                        <td>{{$company->companyName}}</td>
-                        <td>{{$company->personOneName}}</td>
-                        <td>{{$company->phoneOne}}</td>
-                        <td>{{$company->personTwoName}}</td>
-                        <td>{{$company->phoneTwo}}</td>
-                        <td>{{$company->personThreeName}}</td>
-                        <td>{{$company->phoneThree}}</td>
-                        <td>{{$company->website}}</td>
-                        <td>{{$company->address}}</td>
-                        <td class="text-center"><a href="{{url('/company/'.$company->id.'/show')}}">
-                                <button type="button" class="btn btn-info btn-sm">View</button>
-                            </a></td>
-                    </tr>
-                @endforeach
 
                 </tbody>
                 <tfoot>
                 <tr>
                     <th>Company Name</th>
-                    <th>Person One Name</th>
-                    <th>Phone Number</th>
-                    <th>Person Two Name</th>
-                    <th>Phone Number</th>
-                    <th>Person Three Name</th>
-                    <th>Phone Number</th>
+                    <th>Contact One</th>
+                    <th>Phone</th>
+                    <th>Contact Two</th>
+                    <th>Phone</th>
                     <th>Website</th>
                     <th>Address</th>
-                    <th class="text-center">View</th>
+                    <th width="60px">Action</th>
+                    {{--                    <th></th>--}}
                 </tr>
                 </tfoot>
             </table>
         </div>
     </div>
+</div>
 
-    {{--<div class="container-fluid mt-3">--}}
-    {{--<ul class="nav nav-tabs " id="myTab" role="tablist">--}}
-    {{--<li class="nav-item">--}}
-    {{--<a class="nav-link active" id="branch-tab" data-toggle="tab" href="#branch" role="tab" aria-controls="branch" aria-selected="true">Branches</a>--}}
-    {{--</li>--}}
-    {{--<li class="nav-item">--}}
-    {{--<a class="nav-link" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="false">Users</a>--}}
-    {{--</li>--}}
-    {{--<li class="nav-item">--}}
-    {{--<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>--}}
-    {{--</li>--}}
-    {{--</ul>--}}
-    {{--<div class="tab-content" id="myTabContent">--}}
-    {{--<div class="tab-pane fade show active" id="branch" role="tabpanel" aria-labelledby="branch-tab">--}}
 
-    {{--<div class="pb-2 mb-4">--}}
-    {{--<h1>Branches</h1>--}}
-    {{--<a class="btn btn-primary pr-1 pr-2" href="#" role="button">Create Branch</a>--}}
-    {{--</div>--}}
-    {{--<div>--}}
-    {{--@include('admin.dataTable.test')--}}
+<script src="{{asset("js/jquery-3.4.1.min.js")}}"></script>
 
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--<div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">--}}
-    {{--<div class="pb-2 mb-4">--}}
-    {{--<h1>Users</h1>--}}
-    {{--<a class="btn btn-primary pr-1 pr-2" href="#" role="button">Create Branch</a>--}}
-    {{--</div>--}}
-    {{--<div>--}}
-    {{--@include('admin.dataTable.test2')--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--<nav class="navbar navbar-expand-md m-2 bg-primary border border-white p-0" >--}}
-    {{--@if(Auth::check())--}}
-    {{--<div class="collapse navbar-collapse" id="navbarNavDropdown">--}}
-    {{--<ul class="navbar-nav text-white" >--}}
-    {{--<li class="nav-item active">--}}
-    {{--<a class="nav-link" href="#">Staff</a>--}}
-    {{--</li>--}}
-    {{--<li class="nav-item">--}}
-    {{--<a class="nav-link" href="#">Features</a>--}}
-    {{--</li>--}}
-    {{--<li class="nav-item">--}}
-    {{--<a class="nav-link" href="#">Pricing</a>--}}
-    {{--</li>--}}
-    {{--</ul>--}}
-    {{--</div>--}}
-    {{--@endif--}}
-    {{--</nav>--}}
+<script src="{{asset("js/datatable/jquery-3.3.1.js")}}"></script>
+<script src="{{asset("js/datatable/jquery.dataTables.min.js")}}"></script>
+{{--    export button--}}
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js">
+</script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+<script src="{{asset("js/bootstrap.min.js")}}"></script>
+<script src="{{asset("js/popper.min.js")}}"></script>
+<script>
+    $(document).ready(function () {
+        $("#mm").DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
 
-@endsection
+                url: "/pages/companies/ssd"
+            },
+            {{--            ajax: '{!! route('get.roles') !!}',--}}
+            columns: [
+
+                {data: 'name', name: 'name'},
+                {data: 'contactOne', name: 'contactOne'},
+                {data: 'phoneOne', name: 'phoneOne'},
+                {data: 'contactTwo', name: 'contactTwo'},
+                {data: 'phoneTwo', name: 'phoneTwo'},
+                {data: 'website', name: 'website'},
+                {data: 'address', name: 'address'},
+                {data: 'action', name: 'action'},
+
+
+            ],
+            // dom: 'lBfrtip',
+            dom: 'Bfrtip',
+            buttons: [
+                'pageLength',
+                'excel',
+                'csv',
+                'pdf',
+                'copy'
+
+            ],
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "ALL"]],
+        });
+
+        // $(document).on('click','.role' , function () {
+        //     var id = $(this).data('id');
+        //     // alert(id);
+        //     $.ajax({
+        //         // url : '/backend/roles/{id}/show',
+        //         url: '/backend/roles/2/show',
+        //         type : 'GET',
+        //
+        //     });
+        // });
+
+    });
+</script>
+
+</body>
+</html>
+
+

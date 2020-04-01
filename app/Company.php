@@ -10,8 +10,9 @@ class Company extends Model
         'name',
         'contactOne',
         'phoneOne',
-        'address',
-        'phone',
-        'manager'
+        'contactTwo',
+        'phoneTwo',
+        'website',
+        'address'
     ];
 }

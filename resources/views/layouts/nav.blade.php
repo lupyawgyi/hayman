@@ -12,7 +12,7 @@
                 {{--            </li>--}}
                 {{--            href="{{url("/backend/index")}}--}}
                 {{--            @if(\Illuminate\Support\Facades\Auth::user()->hasAnyRole(1,2 ))--}}
-                @if(\Illuminate\Support\Facades\Auth::user()->hasAnyRole(1 ))
+{{--                @if(\Illuminate\Support\Facades\Auth::user()->hasAnyRole(1 ))--}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
@@ -20,10 +20,10 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{url("/backend/users/index")}}">Users</a>
-                            <a class="dropdown-item" href="{{url("/backend/branches/index")}}">Logout</a>
+                            <a class="dropdown-item" href="{{url("/pages/companies/index")}}">Company</a>
                         </div>
                     </li>
-                @endif
+{{--                @endif--}}
                 <li class="nav-item dropdown mr-5">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">

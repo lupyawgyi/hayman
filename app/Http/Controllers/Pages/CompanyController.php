@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Pages;
 
+use App\Company;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CompanyInsertFormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class CompanyController extends Controller
 {
@@ -14,7 +18,19 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.companies.index');
+    }
+
+    public function pull()
+    {
+//        $roles = Role::query()->orderBy('id', 'asc')->where('id','1');
+        $companies = Company::query();
+        return DataTables::of($companies)
+//            ->addColumn('action', function ($companies) {
+//                return '<a href= "' . $companies->id . '/show" class="btn btn-primary btn-sm text-white role">View</a>';
+//            })
+//            ->rawColumns(['action'])
+            ->make(true);
     }
 
     /**
@@ -24,7 +40,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.companies.create');
     }
 
     /**
@@ -33,9 +49,18 @@ class CompanyController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyInsertFormRequest $request)
     {
-        //
+        $company = new Company();
+        $company->name = $request->get('name');
+        $company->contactOne = $request->get('contactOne');
+        $company->phoneOne = $request->get('phoneOne');
+        $company->contactTwo = $request->get('contactTwo');
+        $company->phoneTwo = $request->get('phoneTwo');
+        $company->website = $request->get('website');
+        $company->address = $request->get('address');
+        $company->save();
+        return redirect('pages/companies/index')->with('status','Successfully Inserted New Company Detail!');
     }
 
     /**
@@ -46,7 +71,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $company = Company::find($id);
+        return view('pages/companies/show', compact('company'));
     }
 
     /**
@@ -57,7 +83,9 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::find($id);
+//
+        return view('/pages/companies/edit', compact('company'));
     }
 
     /**
@@ -69,7 +97,18 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $company = Company::find($id);
+        $company->name = $request->get('name');
+        $company->contactOne = $request->get('contactOne');
+        $company->phoneOne = $request->get('phoneOne');
+        $company->contactTwo = $request->get('contactTwo');
+        $company->phoneTwo = $request->get('phoneTwo');
+        $company->website = $request->get('website');
+        $company->address = $request->get('address');
+        if ($company->update()) {
+            return redirect('pages/companies/index')->with('status', 'Successfully updated Data!');
+
+        }
     }
 
     /**
@@ -80,6 +119,16 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+//        $user = User::where('email', '=', Input::get('email'))->first();
+        $company = Company::find($id);
+
+//        $user = DB::table('users')->pluck('office_id')->toArray();
+//
+////        dd($user);
+//        if (in_array($id, $user, false))
+//            return redirect('/backend/branches/index')->with('status', 'This Branch is using');
+//        else
+            $company->Delete();
+        return redirect('/pages/companies/index')->with('status', 'Successfully Deleted Data!');
     }
 }

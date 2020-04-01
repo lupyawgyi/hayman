@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::fallback(function () {   //we can use fallback function if not route
     return view('error');
 });
-
+Route::get('/password', 'Admin\Owncontroller@password');
 Route::get('/send', 'MailController@send');
 Route::view('/test', 'backend.users.test');
 Route::get('/', 'Admin\OwnController@index');
@@ -29,7 +29,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 //Route::view('/users/password/{id}/change','backend/users/password/change')->middleware('auth');
 //Route::post('/users/password/{id}/change','Admin\UserController@change')->middleware('auth');;
 
-Route::group(array('prefix' => 'backend', 'namespace' => 'Admin', 'middleware' => 'SuperUser'), function () {
+Route::group(array('prefix' => 'backend', 'namespace' => 'Admin', 'middleware' => 'auth'), function () {
 
     // Route::get('index','OwnController@backend');
 
@@ -78,36 +78,13 @@ Route::group(array('prefix' => 'backend', 'namespace' => 'Admin', 'middleware' =
 
 });
 
-//Route::get('/backend/index','OwnController@backend')->middleware('auth');
-Route::get('/password', 'Admin\Owncontroller@password');
-//Route::view('/test','backend/users/test');
-
-
-//Route::get('/backend/user/ssd',function(){
-//    $users = User::query();
-//
-//    return \Yajra\DataTables\DataTables::of($users)
-//        ->addColumn('action',function ($user){
-//            return $user->id;
-//        })
-//        ->make(true);
-//});
-
-//Route::get('/backend/role/ssd',function(){
-////    $user = DB::table('users')->where('name', 'John')->first();
-//    $roles = \Spatie\Permission\Models\Role::query()->where('id','1');
-//
-//    return \Yajra\DataTables\DataTables::of($roles)
-//        ->addColumn('action',function ($roles){
-//            return '<a href= "'.$roles->id.'/show" class="btn btn-primary btn-sm text-white role">View</a>';
-//        })
-//        ->make(true);
-////        ->addColumn('action',function ($user){
-////            return $user->id;
-////        })
-//
-//});
-
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::group(array('prefix' => 'pages', 'namespace' => 'pages', 'middleware' => 'auth'), function () {
+    Route::get('/companies/index', 'CompanyController@index');
+    Route::get('/companies/ssd', 'CompanyController@pull');
+    Route::get('/companies/create', 'CompanyController@create');
+    Route::post('/companies/create', 'CompanyController@store');
+    Route::get('/companies/{id}/show', 'CompanyController@show');
+    Route::get('/companies/{id}/edit', 'CompanyController@edit');
+    Route::post('/companies/{id}/edit', 'CompanyController@update');
+    Route::get('/companies/{id}/delete', 'CompanyController@destroy');
+});
