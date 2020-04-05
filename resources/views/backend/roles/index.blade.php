@@ -39,16 +39,16 @@
     </ul>
 </div>
 <div class="container-fluid">
-    @if(session('status'))
-        @include("helpers.session")
-    @endif
+
+    @include("helpers.session")
+
     <div class="my-2">
         <div class="card-header">
             <h3>All Roles</h3>
         </div>
         <div>
             <a href="{{url('backend/roles/create')}}" class="btn btn-outline-primary mt-3 text-center"><i
-                    class="fa fa-xbox" aria-hidden="true"></i> &nbsp;Create New User</a>
+                    class="fa fa-xbox" aria-hidden="true"></i> &nbsp;Create New Role</a>
         </div>
         <div class="card-body">
             <table id="mm" class="display" style="width:100%">

@@ -63,7 +63,7 @@ class BranchController extends Controller
         $branch->phone = $request->get('phone');
         $branch->manager = $request->get('manager');
         $branch->save();
-        return redirect('backend/branches/index')->with('status', 'Successfully Inserted Data!');
+        return redirect('backend/branches/index')->with('success', 'Successfully Inserted Data!');
     }
 
     /**
@@ -108,7 +108,7 @@ class BranchController extends Controller
         $branch->phone = $request->get('phone');
         $branch->manager = $request->get('manager');
         if ($branch->update()) {
-            return redirect('backend/branches/index')->with('status', 'Successfully updated Data!');
+            return redirect('backend/branches/index')->with('success', 'Successfully updated Data!');
 
         }
     }
@@ -128,9 +128,9 @@ class BranchController extends Controller
 
 //        dd($user);
         if (in_array($id, $user, false))
-            return redirect('/backend/branches/index')->with('status', 'This Branch is using');
+            return redirect('/backend/branches/index')->with('status', 'Cannot delete.This data is using');
         else
             $branch->Delete();
-        return redirect('/backend/branches/index')->with('status', 'Successfully Deleted Data!');
+        return redirect('/backend/branches/index')->with('success', 'Successfully Deleted Data!');
     }
 }

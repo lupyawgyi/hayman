@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleInsertFormRequest;
 use Illuminate\Http\Request;
+
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\DataTables;
@@ -24,6 +25,7 @@ class RoleController extends Controller
 
     public function pull()
     {
+
 //        $roles = Role::query()->orderBy('id', 'asc')->where('id','1');
         $roles = Role::query()->withTrashed();
         return DataTables::of($roles)
@@ -62,7 +64,7 @@ class RoleController extends Controller
         $role->name = $request->get('name');
         $role->description = $request->get('description');
         $role->save();
-        return redirect('backend/roles/index')->with('status', 'Successfully Inserted Data!');
+        return redirect('backend/roles/index')->with('success', 'Successfully Inserted Data!');
     }
 
     /**
@@ -105,7 +107,7 @@ class RoleController extends Controller
         $role->description = $request->get('description');
         $role->syncPermissions($request->get('permission'));
         if ($role->update()) {
-            return redirect('backend/roles/index')->with('status', 'Successfully updated Data!');
+            return redirect('backend/roles/index')->with('success', 'Successfully updated Data!');
 
         }
     }
@@ -120,21 +122,21 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         $role->ForceDelete();
-        return redirect('/backend/roles/index')->with('status', 'Successfully Deleted Data!');
+        return redirect('/backend/roles/index')->with('success', 'Successfully Deleted Data!');
     }
 
     public function soft($id)
     {
         $role = Role::find($id);
         $role->Delete();
-        return redirect('/backend/roles/index')->with('status', 'Successfully Disable Data!');
+        return redirect('/backend/roles/index')->with('success', 'Successfully Disable Data!');
     }
 
     public function restore($id)
     {
         $role = Role::withTrashed()->find($id);
         $role->restore();
-        return redirect('/backend/roles/index')->with('status', 'Successfully Enable Data!');
+        return redirect('/backend/roles/index')->with('success', 'Successfully Enable Data!');
 
     }
 }

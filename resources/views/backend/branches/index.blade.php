@@ -39,9 +39,7 @@
     </ul>
 </div>
 <div class="container-fluid">
-    @if(session('status'))
-        @include("helpers.session")
-    @endif
+    @include("helpers.session")
     <div class="my-2">
         <div class="card-header">
             <h3>All Branches</h3>

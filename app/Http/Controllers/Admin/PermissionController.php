@@ -56,7 +56,7 @@ class PermissionController extends Controller
         $permission->name = $request->get('name');
         $permission->description = $request->get('description');
         $permission->save();
-        return redirect('backend/permissions/index')->with('status', 'Successfully Inserted Data!');
+        return redirect('backend/permissions/index')->with('success', 'Successfully Inserted Data!');
     }
 
     /**
@@ -97,7 +97,7 @@ class PermissionController extends Controller
         $permission->name = $request->get('name');
         $permission->description = $request->get('description');
         if ($permission->update()) {
-            return redirect('backend/permissions/index')->with('status', 'Successfully updated Data!');
+            return redirect('backend/permissions/index')->with('success', 'Successfully updated Data!');
 
         }
     }

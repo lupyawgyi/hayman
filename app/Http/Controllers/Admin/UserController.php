@@ -30,7 +30,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->password = bcrypt($request->get('password'));
         $user->update();
-        return redirect('/')->with('status', 'Successfully updated Data!');
+        return redirect('/')->with('success', 'Successfully updated Data!');
 
 
     }
@@ -116,7 +116,7 @@ class UserController extends Controller
         ];
         if ($user->save()) {
 //            \Mail::to([$request->get('email'),'yeemonoo22@gmail.com'])->send(new SuccessfulCreateAccount($data ));
-            return redirect('backend/users/index')->with('status', 'Successfully Inserted Data!');
+            return redirect('backend/users/index')->with('success', 'Successfully Inserted Data!');
 
         }
 //        Mail::to('dunsin.olubobokun@domain.com')
@@ -174,7 +174,7 @@ class UserController extends Controller
         $user->syncRoles($request->get('role'));
         if ($user->update()) {
 
-            return redirect('backend/users/index')->with('status', 'Successfully updated Data!');
+            return redirect('backend/users/index')->with('success', 'Successfully updated Data!');
 
         }
     }
@@ -189,21 +189,21 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->ForceDelete();
-        return redirect('backend/users/index')->with('status', 'Successfully Deleted Data!');
+        return redirect('backend/users/index')->with('success', 'Successfully Deleted Data!');
     }
 
     public function soft($id)
     {
         $user = User::find($id);
         $user->Delete();
-        return redirect('backend/users/index')->with('status', 'Successfully Ban User');
+        return redirect('backend/users/index')->with('success', 'Successfully Ban User');
     }
 
     public function restore($id)
     {
         $user = User::withTrashed()->find($id);
         $user->restore();
-        return redirect('backend/users/index')->with('status', 'Successfully Active User');
+        return redirect('backend/users/index')->with('success', 'Successfully Active User');
 
     }
 }
