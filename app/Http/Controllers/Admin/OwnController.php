@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OwnController extends Controller
 {
@@ -23,9 +25,9 @@ class OwnController extends Controller
     {
 
         if (Auth::check())
-            return view('home');
+            return view('backend/users/home');
         else
-            return view('index');
+            return view('backend/users/login');
     }
 
     /**
@@ -93,4 +95,31 @@ class OwnController extends Controller
     {
         //
     }
+
+
+//    function index()
+//    {
+//        return view('backend.users.test');
+//    }
+//
+//    function fetch(Request $request)
+//    {
+//        if($request->get('query'))
+//        {
+//            $query = $request->get('query');
+//            $data = DB::table('companies')
+//                ->where('name', 'LIKE', "%{$query}%")
+//                ->get();
+//            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+//            foreach($data as $row)
+//            {
+//                $output .= '
+//       <li><a href="#">'.$row->name.'</a></li>
+//       ';
+//            }
+//            $output .= '</ul>';
+//            echo $output;
+//        }
+//    }
+
 }

@@ -1,21 +1,56 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>{{ config('app.name') }} - {{ config('app.subtitle') }}</title>
+    <title>Ajax Autocomplete Textbox in Laravel using JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .box{
+            width:600px;
+            margin:0 auto;
+        }
+    </style>
 </head>
 <body>
-User name : {{ $data['name'] }}
-<br>
-password : {{ $data['password'] }}
-<h3 class="text-danger">Need to change the default password after login</h3>
+<br />
+<div class="container box">
+    <h3 align="center">Ajax Autocomplete Textbox in Laravel using JQuery</h3><br />
+
+    <div class="form-group">
+        <input type="text" name="country_name" id="country_name" class="form-control input-lg" placeholder="Enter Country Name" />
+        <div id="countryList">
+        </div>
+    </div>
+    {{ csrf_field() }}
+</div>
 </body>
 </html>
 
+<script>
+    $(document).ready(function(){
 
+        $('#country_name').keyup(function(){
+            var query = $(this).val();
+            if(query != '')
+            {
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url:"{{ route('autocomplete.fetch') }}",
+                    method:"POST",
+                    data:{query:query, _token:_token},
+                    success:function(data){
+                        $('#countryList').fadeIn();
+                        $('#countryList').html(data);
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', 'li', function(){
+            $('#country_name').val($(this).text());
+            $('#countryList').fadeOut();
+        });
+
+    });
+</script>

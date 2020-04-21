@@ -74,8 +74,9 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'myomin.tun@hayman-capital.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'haymancontrol@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Hayman'),
+//            'name' => env('Hayman'),
     ],
 //    'from' => ['address' => 'myominhtun65@gmail.com', 'name' => 'hawle'],
     /*

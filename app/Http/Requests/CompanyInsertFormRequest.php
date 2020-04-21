@@ -24,9 +24,9 @@ class CompanyInsertFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'companyName'=>'required|unique:companies',
+            'name'=>'required|unique:companies',
             'contactOne'=>'required',
-            'phoneOne'=>'required',
+            'phoneOne'=>'required|min:11|numeric',
             'contactTwo',
             'phoneTwo',
             'website',

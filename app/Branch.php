@@ -15,4 +15,8 @@ class Branch extends Model
         'phone',
         'manager'
     ];
+    public function region()
+    {
+        return $this->belongsTo('App\Region', 'region_id', 'id');
+    }
 }

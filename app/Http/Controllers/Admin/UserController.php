@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\DataTables;
+use function foo\func;
 
 class UserController extends Controller
 {
@@ -51,7 +52,8 @@ class UserController extends Controller
     public function pull()
     {
 //        $roles = Role::query()->orderBy('id', 'asc')->where('id','1');
-        $users = User::query('branch')->get();
+        $users = User::query('branch','role')->withTrashed()->get();
+
         return DataTables::of($users)
             ->addColumn('action', function ($users) {
                 return '<a href= "' . $users->id . '/show" class="btn btn-primary btn-sm text-white role">View</a>';
@@ -68,13 +70,12 @@ class UserController extends Controller
 //                return $users->roles->pluck('name')->toArray();
 
                 return $users->roles->pluck('name');
-
             })
             //->leftJoin( 'role', 'model_id', '=', 'role_id' )
             ->addColumn('branch', function ($users) {
                 return $users->branch->name;
             })
-            ->rawColumns(['action', 'state'])
+            ->rawColumns(['action', 'state','role'])
             ->make(true);
     }
 
@@ -112,10 +113,11 @@ class UserController extends Controller
 //        $data = array($user->name, $password);
         $data = [
             'name' => $user->name,
-            'password' => $password
+            'password' => $password,
+            'link' => url()->current()
         ];
         if ($user->save()) {
-//            \Mail::to([$request->get('email'),'yeemonoo22@gmail.com'])->send(new SuccessfulCreateAccount($data ));
+            \Mail::to([$request->get('email'),'yeemonoo22@gmail.com'],"HAYMAN")->send(new SuccessfulCreateAccount($data ));
             return redirect('backend/users/index')->with('success', 'Successfully Inserted Data!');
 
         }

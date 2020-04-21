@@ -28,11 +28,12 @@ class SuccessfulCreateAccount extends Mailable
     /**
      * Build the message.
      *
+
      * @return $this
      */
     public function build()
     {
         //$user = Auth::user();
-        return $this->subject('Check the detail account information')->view("backend.users.test");
+        return $this->subject('Check the detail account information')->view("backend.users.mails.SuccessfulCreateAccount");
     }
 }

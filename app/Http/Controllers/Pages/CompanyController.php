@@ -8,6 +8,7 @@ use App\Http\Requests\CompanyInsertFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use function foo\func;
 
 class CompanyController extends Controller
 {
@@ -26,10 +27,15 @@ class CompanyController extends Controller
 //        $roles = Role::query()->orderBy('id', 'asc')->where('id','1');
         $companies = Company::query();
         return DataTables::of($companies)
-//            ->addColumn('action', function ($companies) {
-//                return '<a href= "' . $companies->id . '/show" class="btn btn-primary btn-sm text-white role">View</a>';
-//            })
-//            ->rawColumns(['action'])
+            ->addColumn('action', function ($companies) {
+                return '<a href= "' . $companies->id . '/show" class="btn btn-primary btn-sm text-white role">View</a>';
+            })
+            ->editColumn('website',function($companies){
+                return "<a target=\"_blank\" href='http://$companies->website'>$companies->website</a>";
+//                return "<a [href^='http://'].attr('$companies->website')>$companies->website</a>";
+//
+            })
+            ->rawColumns(['website','action'])
             ->make(true);
     }
 
@@ -42,6 +48,7 @@ class CompanyController extends Controller
     {
         return view('pages.companies.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -60,7 +67,7 @@ class CompanyController extends Controller
         $company->website = $request->get('website');
         $company->address = $request->get('address');
         $company->save();
-        return redirect('pages/companies/index')->with('status','Successfully Inserted New Company Detail!');
+        return redirect('pages/companies/index')->with('success', 'Successfully Inserted Data!');
     }
 
     /**
@@ -106,7 +113,7 @@ class CompanyController extends Controller
         $company->website = $request->get('website');
         $company->address = $request->get('address');
         if ($company->update()) {
-            return redirect('pages/companies/index')->with('status', 'Successfully updated Data!');
+            return redirect('pages/companies/index')->with('success', 'Successfully updated Data!');
 
         }
     }
@@ -129,6 +136,6 @@ class CompanyController extends Controller
 //            return redirect('/backend/branches/index')->with('status', 'This Branch is using');
 //        else
             $company->Delete();
-        return redirect('/pages/companies/index')->with('status', 'Successfully Deleted Data!');
+        return redirect('/pages/companies/index')->with('success', 'Successfully Deleted Data!');
     }
 }

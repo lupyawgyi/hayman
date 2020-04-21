@@ -164,6 +164,7 @@ return [
 
         Yajra\Datatables\DatatablesServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Laravel\Dusk\DuskServiceProvider::class,
 
         /*
          * Package Service Providers...

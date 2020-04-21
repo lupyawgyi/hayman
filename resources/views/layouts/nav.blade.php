@@ -19,7 +19,7 @@
                             Only Admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{url("/backend/users/index")}}">Users</a>
+                            <a class="dropdown-item" href="{{url("/backend/users/index")}}">Access Management</a>
                             <a class="dropdown-item" href="{{url("/pages/companies/index")}}">Company</a>
                         </div>
                     </li>

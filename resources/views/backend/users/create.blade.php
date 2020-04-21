@@ -2,6 +2,7 @@
 @section('title','UserCreate')
 @section('content')
 
+
     <div class="container-fluid mt-3">
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -15,6 +16,12 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="{{url('backend/branches/index')}}">Branches</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{{url('backend/staff/index')}}">Staff</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{{url('backend/dropDowns/regions/index')}}">Dropdowns</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

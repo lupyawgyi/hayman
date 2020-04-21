@@ -20,6 +20,12 @@
                         <input type="password" class="form-control" id="password" placeholder="Password"
                                name="password">
                     </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember_me">
+                        <label class="form-check-label" for="exampleCheck1">Remermber me</label>
+                    </div>
+                    <br>
                     {{--<div class="form-group form-check">--}}
                     {{--<input type="checkbox" class="form-check-input" id="exampleCheck1">--}}
                     {{--<label class="form-check-label" for="exampleCheck1">Check me out</label>--}}

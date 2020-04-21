@@ -22,7 +22,7 @@
 <div class="container-fluid mt-3">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link " href="{{url("/pages/companies/index")}}">Companies</a>
+            <a class="nav-link active" href="{{url("/pages/companies/index")}}">Companies</a>
         </li>
 {{--        <li class="nav-item">--}}
 {{--            <a class="nav-link " href="{{url('backend/roles/index')}}">Roles</a>--}}
@@ -39,16 +39,14 @@
     </ul>
 </div>
 <div class="container-fluid">
-    @if(session('status'))
-        @include("helpers.session")
-    @endif
+    @include("helpers.session")
     <div class="my-2">
         <div class="card-header">
-            <h3>All Branches</h3>
+            <h3>All Companies</h3>
         </div>
         <div>
-            <a href="{{url('backend/branches/create')}}" class="btn btn-outline-primary mt-3 text-center"><i
-                    class="fa fa-xbox" aria-hidden="true"></i> &nbsp;Create New Branch</a>
+            <a href="{{url('pages/companies/create')}}" class="btn btn-outline-primary mt-3 text-center"><i
+                    class="fa fa-xbox" aria-hidden="true"></i> &nbsp;Create New Company</a>
         </div>
         <div class="card-body">
             <table id="mm" class="display" style="width:100%">
@@ -59,7 +57,7 @@
                     <th>Phone</th>
                     <th>Contact Two</th>
                     <th>Phone</th>
-                    <th>Website</th>
+                    <th >Website</th>
                     <th>Address</th>
                     <th width="60px">Action</th>
                     {{--                    <th></th>--}}

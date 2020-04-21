@@ -17,6 +17,12 @@
                 <a class="nav-link active" href="{{url('backend/branches/index')}}">Branches</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link " href="{{url('backend/staff/index')}}">Staff</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{{url('backend/dropDowns/regions/index')}}">Dropdowns</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
         </ul>
@@ -29,6 +35,18 @@
                     @include("helpers.error_loop")
                     {{csrf_field()}}
                     <legend class="text-center text-info mb-2">Update Branch</legend>
+                    <div class="form-group row">
+                        <label for="office_name" class="col-3 col-form-label">Region *</label>
+                        <div class="col-12">
+                            <select class="form-control" name="region_id" >
+                                @foreach($regions as $region)
+                                    <option value="{{$region->id}}"
+                                    {{$branch->region_id == $region->id ? "selected" : ""}}
+                                    >{{$region->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="branchName">Branch Name</label>
                         <input type="text" class="form-control" id="name" placeholder="Enter Branch Name" name="name"

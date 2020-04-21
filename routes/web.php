@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::get('/autocomplete', 'Admin\OwnController@index');
+//Route::post('/autocomplete/fetch', 'Admin\OwnController@fetch')->name('autocomplete.fetch');
+
 Route::fallback(function () {   //we can use fallback function if not route
     return view('error');
 });
@@ -75,6 +78,50 @@ Route::group(array('prefix' => 'backend', 'namespace' => 'Admin', 'middleware' =
     Route::post('/branches/{id}/edit', 'BranchController@update');
     Route::get('/branches/{id}/delete', 'BranchController@destroy');
 
+    Route::get('/dropDowns/regions/index', 'RegionController@index');
+    Route::get('/regions/ssd', 'RegionController@pull');
+    Route::get('/dropDowns/regions/create', 'RegionController@create');
+    Route::post('/dropDowns/regions/create', 'RegionController@store');
+    Route::get('/dropDowns/regions/{id}/show', 'RegionController@show');
+    Route::get('/dropDowns/regions/{id}/edit', 'RegionController@edit');
+    Route::post('/dropDowns/regions/{id}/edit', 'RegionController@update');
+    Route::get('/dropDowns/regions/{id}/delete', 'RegionController@destroy');
+
+    Route::get('/dropDowns/positions/index', 'PositionController@index');
+    Route::get('/positions/ssd', 'PositionController@pull');
+    Route::get('/dropDowns/positions/create', 'PositionController@create');
+    Route::post('/dropDowns/positions/create', 'PositionController@store');
+    Route::get('/dropDowns/positions/{id}/show', 'PositionController@show');
+    Route::get('/dropDowns/positions/{id}/edit', 'PositionController@edit');
+    Route::post('/dropDowns/positions/{id}/edit', 'PositionController@update');
+    Route::get('/dropDowns/positions/{id}/delete', 'PositionController@destroy');
+
+    Route::get('/dropDowns/phones/index', 'PhoneController@index');
+    Route::get('/phones/ssd', 'PhoneController@pull');
+    Route::get('/dropDowns/phones/create', 'PhoneController@create');
+    Route::post('/dropDowns/phones/create', 'PhoneController@store');
+    Route::get('/dropDowns/phones/{id}/show', 'PhoneController@show');
+    Route::get('/dropDowns/phones/{id}/edit', 'PhoneController@edit');
+    Route::post('/dropDowns/phones/{id}/edit', 'PhoneController@update');
+    Route::get('/dropDowns/phones/{id}/delete', 'PhoneController@destroy');
+
+    Route::get('/staff/index', 'StaffController@index');
+    Route::get('/staff/ssd', 'StaffController@pull');
+    Route::get('/staff/create', 'StaffController@create');
+    Route::post('/staff/create', 'StaffController@store');
+    Route::get('/staff/{id}/show', 'StaffController@show');
+    Route::get('/staff/{id}/edit', 'StaffController@edit');
+    Route::post('/staff/{id}/edit', 'StaffController@update');
+    Route::get('/staff/{id}/delete', 'StaffController@destroy');
+
+    Route::get('/dropDowns/computers/index', 'ComputerController@index');
+    Route::get('/computers/ssd', 'ComputerController@pull');
+    Route::get('/dropDowns/computers/create', 'ComputerController@create');
+    Route::post('/dropDowns/computers/create', 'ComputerController@store');
+    Route::get('/dropDowns/computers/{id}/show', 'ComputerController@show');
+    Route::get('/dropDowns/computers/{id}/edit', 'ComputerController@edit');
+    Route::post('/dropDowns/computers/{id}/edit', 'ComputerController@update');
+    Route::get('/dropDowns/computers/{id}/delete', 'ComputerController@destroy');
 
 });
 
@@ -87,4 +134,6 @@ Route::group(array('prefix' => 'pages', 'namespace' => 'pages', 'middleware' => 
     Route::get('/companies/{id}/edit', 'CompanyController@edit');
     Route::post('/companies/{id}/edit', 'CompanyController@update');
     Route::get('/companies/{id}/delete', 'CompanyController@destroy');
+
+
 });

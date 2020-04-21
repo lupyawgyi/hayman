@@ -19,6 +19,12 @@
                 <a class="nav-link " href="{{url('backend/branches/index')}}">Branches</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link " href="{{url('backend/staff/index')}}">Staff</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{{url('backend/dropDowns/regions/index')}}">Dropdowns</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link disabled " href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
         </ul>
@@ -70,8 +76,7 @@
                         <select class="form-control" name="office_id">
                             @foreach($branches as $branch)
                                 <option value="{{$branch->id}}"
-                                    {{$user->office_id == $branch->id ? "selected" :""}}
-                                >{{$branch->name}}</option>
+                                    {{$user->office_id == $branch->id ? "selected" :""}} >{{$branch->name}}</option>
                             @endforeach
                         </select>
                     </div>

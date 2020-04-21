@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Branch;
 use App\Http\Requests\BranchInsertFormRequest;
+use App\Region;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,12 +29,15 @@ class BranchController extends Controller
     public function pull()
     {
 //        $roles = Role::query()->orderBy('id', 'asc')->where('id','1');
-        $branches = Branch::query();
+        $branches = Branch::query('region_id')->get();
         return DataTables::of($branches)
             ->addColumn('action', function ($branches) {
                 return '<a href= "' . $branches->id . '/show" class="btn btn-primary btn-sm text-white role">View</a>';
             })
-            ->rawColumns(['action'])
+            ->editColumn('region_id',function ($branches){
+                return $branches->region->name;
+            })
+            ->rawColumns(['action','region_id'])
             ->make(true);
     }
 
@@ -44,7 +48,8 @@ class BranchController extends Controller
      */
     public function create()
     {
-        return view('backend.branches.create');
+        $regions = Region::all();
+        return view('backend.branches.create', compact('regions'));
     }
 
     /**
@@ -56,6 +61,7 @@ class BranchController extends Controller
     public function store(BranchInsertFormRequest $request)
     {
         $branch = new Branch();
+        $branch->region_id = $request->get('region_id');
         $branch->name = $request->get('name');
         $branch->openingDate = $request->get('openingDate');
         $branch->address = $request->get('address');
@@ -86,9 +92,10 @@ class BranchController extends Controller
      */
     public function edit($id)
     {
+        $regions = Region::all();
         $branch = Branch::find($id);
 //
-        return view('/backend/branches/edit', compact('branch'));
+        return view('/backend/branches/edit', compact('branch','regions'));
     }
 
     /**
@@ -101,6 +108,7 @@ class BranchController extends Controller
     public function update(BranchInsertFormRequest $request, $id)
     {
         $branch = Branch::find($id);
+        $branch->region_id = $request->get('region_id');
         $branch->name = $request->get('name');
         $branch->openingDate = $request->get('openingDate');
         $branch->address = $request->get('address');

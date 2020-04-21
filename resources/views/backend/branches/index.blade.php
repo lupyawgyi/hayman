@@ -34,6 +34,12 @@
             <a class="nav-link active" href="{{url('backend/branches/index')}}">Branches</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link " href="{{url('backend/staff/index')}}">Staff</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('backend/dropDowns/regions/index')}}">Dropdowns</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
     </ul>
@@ -53,6 +59,7 @@
                 <thead>
                 <tr>
                     <th>Branch Name</th>
+                    <th>Region</th>
                     <th>Operning Date</th>
                     <th>Office Address</th>
                     <th>City</th>
@@ -68,6 +75,7 @@
                 <tfoot>
                 <tr>
                     <th>Branch Name</th>
+                    <th>Region</th>
                     <th>Operning Date</th>
                     <th>Office Address</th>
                     <th>City</th>
@@ -113,6 +121,7 @@
             columns: [
 
                 {data: 'name', name: 'name'},
+                {data: 'region_id',name:'region_id'},
                 {data: 'openingDate', name: 'openingDate'},
                 {data: 'address', name: 'Address'},
                 {data: 'city', name: 'city'},
