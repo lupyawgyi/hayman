@@ -96,30 +96,15 @@ class OwnController extends Controller
         //
     }
 
+    public function exchange(request $request){
 
-//    function index()
-//    {
-//        return view('backend.users.test');
-//    }
-//
-//    function fetch(Request $request)
-//    {
-//        if($request->get('query'))
-//        {
-//            $query = $request->get('query');
-//            $data = DB::table('companies')
-//                ->where('name', 'LIKE', "%{$query}%")
-//                ->get();
-//            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
-//            foreach($data as $row)
-//            {
-//                $output .= '
-//       <li><a href="#">'.$row->name.'</a></li>
-//       ';
-//            }
-//            $output .= '</ul>';
-//            echo $output;
-//        }
-//    }
+
+//        echo "hello";
+        $exchange = json_decode(file_get_contents('http://forex.cbm.gov.mm/api/history/' . $request->date));
+
+        return view('backend.dropDowns.computers.create',compact('exchange'));
+
+    }
+
 
 }

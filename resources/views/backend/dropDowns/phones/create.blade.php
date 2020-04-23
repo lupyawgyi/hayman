@@ -54,7 +54,7 @@
                 </div>
                 <div class="row justify-content-end no-gutters">
                     <button type="submit" class="btn btn-primary  mr-3">Create</button>
-                    <button type="reset" class="btn btn-warning ">Cancle</button>
+                    <a href="{{ URL::previous() }}" class="btn btn-warning">Cancel</a>
                 </div>
             </form>
         </div>

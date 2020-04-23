@@ -24,14 +24,15 @@ class ComputerInsertFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'local_id' => 'required|unique:computers',
-            'brand' => 'required',
-            'model_or_serial' => 'required',
-            'specification' => 'required',
-            'company_id' => 'required|unique:computers',
-            'price' => 'required',
-            'bought_date' => 'required',
-            'image' => 'required|image',
+//            'local_id' => 'required|unique:computers',
+//            'brand' => 'required',
+//            'model_or_serial' => 'required',
+//            'specification' => 'required',
+//            'ip_address'=>'required',
+//            'company_id' => 'required',
+//            'price' => 'required',
+//            'bought_date' => 'required',
+//            'image' => 'required',
 
         ];
     }

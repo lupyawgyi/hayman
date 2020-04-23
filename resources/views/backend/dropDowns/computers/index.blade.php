@@ -79,7 +79,8 @@
                     <th>Model</th>
                     <th>Specification</th>
                     <th>Company</th>
-                    <th>Price</th>
+                    <th>Original Price</th>
+                    <th>Current Price</th>
                     <th>bought_date</th>
                     <th width="60px">Action</th>
                     {{--                    <th></th>--}}
@@ -92,10 +93,12 @@
                 <tr>
                     <th>Local ID</th>
                     <th>Brand</th>
+
                     <th>Model</th>
                     <th>Specification</th>
                     <th>Company</th>
-                    <th>Price</th>
+                    <th>Original Price</th>
+                    <th>Current Price</th>
                     <th>bought_date</th>
                     <th width="60px">Action</th>
                     {{--                    <th></th>--}}
@@ -138,11 +141,11 @@
 
                 {data: 'local_id', name: 'local_id'},
                 {data: 'brand', name: 'brand'},
-
                 {data: 'model_or_serial', name: 'model_or_serial'},
                 {data: 'specification', name:'specification'},
                 {data:'company_id', name:'company_id'},
                 {data:'price', name:'price'},
+                {data: 'current', name: 'current'},
                 {data:'bought_date' , name:'bought_date'},
                 {data:'action' , name:'action'}
 

@@ -21,6 +21,9 @@ Route::fallback(function () {   //we can use fallback function if not route
     return view('error');
 });
 Route::get('/password', 'Admin\Owncontroller@password');
+
+//Route::post('/exchange', 'Admin\Owncontroller@exchange');
+
 Route::get('/send', 'MailController@send');
 Route::view('/test', 'backend.users.test');
 Route::get('/', 'Admin\OwnController@index');

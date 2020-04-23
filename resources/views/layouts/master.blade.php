@@ -23,6 +23,13 @@
     <link rel="stylesheet" href="{{asset("/css/bootstrap-theme.min.css")}}">
     <link rel="stylesheet" href="{{asset("/css/fontawesome.min.css")}}">
 
+{{--    for dropdown--}}
+{{--    <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet"/>--}}
+{{--    <link href="{{ asset('css/select2') }}" rel="stylesheet"/>--}}
+
+{{--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>--}}
+{{--    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>--}}
+
 
 </head>
 <body>

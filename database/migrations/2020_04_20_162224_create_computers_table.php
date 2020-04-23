@@ -21,6 +21,7 @@ class CreateComputersTable extends Migration
             $table->string('specification');
             $table->string('ip_address');
             $table->string('company_id');
+            $table->integer('live_year');
             $table->string('price');
             $table->date('bought_date');
             $table->string('image');
